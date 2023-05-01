@@ -1,3 +1,4 @@
+// API key from weather map
 var APIKey = "7256fefb1f60268b316d8f1834d7403d";
 
 var city;
@@ -7,14 +8,16 @@ api.openweathermap.org / data / 2.5 / weather ? q = { city name } & appid={API k
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 
-
+//  function for getting weather by city
 function getWeather() {
     const newName = document.getElementById("cityInput");
     const cityName = document.getElementById("cityName");
     cityName.innerHTML = "--" + newName.value + "--"
 
 
-
+// getting city name from API. 
+// Returning response in JSON
+// for loop for 5 days of weather min & max
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" + newName.value + "&appid=7256fefb1f60268b316d8f1834d7403d")
         .then(response => response.json())
         .then(data => {
@@ -26,13 +29,13 @@ function getWeather() {
 
         })
 
-
+// send error alert
         .catch(err => alert("Something Went Wrong"))
 
         
 }
 
-
+// The day of the week fromm dayjs
 var timeDisplayEl = $('#time-display');
 function displayTime() {
     var rightNow = dayjs().format('MMM DD, YYYY');
